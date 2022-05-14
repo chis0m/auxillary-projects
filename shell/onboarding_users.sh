@@ -57,7 +57,7 @@ group=developers                                            # Define variables
 
 
 if grep -q "^${group}:" /etc/group; then                    # checks if group exists
-  echo "$group group exists"
+  echo -e "\033[33m$group group exists"
 else
   sudo groupadd $group
 fi
@@ -65,7 +65,7 @@ fi
 
 function creatUser() {                                      # define function to abstract user creation logic
     if grep -q "^${1}:" /etc/passwd; then                  # checks if user already exists
-        echo "user $1 exists on the system"
+        echo -e "\033[33muser $1 exists on the system"
     else
         sudo useradd -m $1 -G $group                        # create user and add to group
         #echo -e "$password\n$password\n" | sudo passwd $1  # create initial password for user, but commented out for now
@@ -73,6 +73,7 @@ function creatUser() {                                      # define function to
         sudo mkdir -p /home/$1/.ssh                         # create ssh directory for created user
         sudo cp ~/.ssh/authorized_keys /home/$1/.ssh        # copy auth key file to created user
         sudo chown -R $1:$1 /home/$1/.ssh                   # change ownership of ssh file to created user
+        echo -e "\033[32muser $1 created successfully"
     fi    
 }
 
@@ -80,4 +81,4 @@ function creatUser() {                                      # define function to
 while read -r USER                                          # loop through csv file to create users
     do
         creatUser $USER                                     # call function to create users
-done < "../database/names.csv"                              # input file through stdin
+done < "./names.csv"                                        # input file through stdin
