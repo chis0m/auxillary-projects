@@ -9,4 +9,4 @@
 #### Below shows the demo
 ![](/assets/gif.gif)
 
-Note: video is in the **assets** folder
+[demo.mp4](https://soms-public-assets.s3.amazonaws.com/gif.mp4)
