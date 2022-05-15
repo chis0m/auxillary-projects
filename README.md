@@ -8,3 +8,5 @@
 
 #### Below shows the demo
 ![](/assets/gif.gif)
+
+Note: video is in the **assets** folder
